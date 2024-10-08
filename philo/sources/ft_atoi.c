@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:39:34 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/08 15:49:38 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/08 16:44:15 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int	overflow_return(int sign)
 		return (-1);
 	else if (sign == -1)
 		return (0);
+	return (0);
 }
 
 int	ft_atoi(char *str)
@@ -30,7 +31,7 @@ int	ft_atoi(char *str)
 	sign = 1;
 	while (*str == 32 || (*str >= 9 && *str <= 13))
 		str++;
-	if ((*str == '+' || *str '-') && (*(str + 1) != '\0'))
+	if ((*str == '+' || *str == '-') && (*(str + 1) != '\0'))
 	{
 		if (*str == '-')
 			sign *= -1;
