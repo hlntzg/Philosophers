@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:03:13 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/08 14:30:44 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/08 16:38:42 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,8 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+int	ft_atoi(char *str);
+size_t	ft_strlen(char *str);
+void	ft_putstr_fd(char *str, int fd);
 
 #endif
