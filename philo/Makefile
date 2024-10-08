@@ -6,7 +6,7 @@
 #    By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 13:22:47 by hutzig            #+#    #+#              #
-#    Updated: 2024/10/08 13:37:49 by hutzig           ###   ########.fr        #
+#    Updated: 2024/10/08 16:45:42 by hutzig           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 SOURCES = main.c \
-	\
-	\
+	utils.c \
+	ft_atoi.c \
 
 SRC = $(addprefix $(DIR_SRC)/,$(SOURCES))
 
@@ -48,7 +48,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "The executable file has been removed"
+	@echo "philo executable file has been removed"
 
 re: fclean all
 
