@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:16:46 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/11 09:24:44 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/11 17:04:04 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ int	main(int argc, char **argv)
 		free(data);
 		return (EXIT_FAILURE);
 	}
-	printf("%ld data->start as the entry point of the program\n", data->start.tv_sec);
+	initialization
+	//printf("%ld data->start as the entry point of the program\n", data->start.tv_sec);
 	free(data);
 	return (EXIT_SUCCESS);
 }

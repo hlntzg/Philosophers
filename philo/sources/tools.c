@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 08:23:47 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/11 09:03:43 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/11 16:30:17 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,5 @@ unsigned long	elapsed_time(t_time start)
 	et_usec = (end.tv_usec - start.tv_usec);
 	return (et_sec * 1000 + et_usec / 1000);
 }
+
+ft_usleep() // uslepp() is not so precise 
