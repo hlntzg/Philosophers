@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:03:13 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/09 11:25:44 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/11 09:23:49 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,42 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct	s_args
+typedef struct timeval	t_time;
+
+typedef struct s_args
 {
 	int	n_philo;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	n_meals;
-}		t_args;
+}	t_args;
 
-typedef struct	s_data
+typedef enum s_status
+{
+	EAT,
+	SLEEP,
+	THINK
+}	t_status;
+
+typedef struct s_philo
+{
+	t_status	status;
+	t_time		end_eating;
+	int			count_eating;
+}	t_philo;
+
+typedef struct s_data
 {
 	t_args	arg;
-}		t_data;
+	t_time	start;
+	t_philo	*philo;
+}	t_data;
 
-int	ft_atoi(char *str);
+int		ft_atoi(char *str);
 size_t	ft_strlen(char *str);
 void	ft_putstr_fd(char *str, int fd);
+
+unsigned long	elapsed_time(t_time start);
 
 #endif

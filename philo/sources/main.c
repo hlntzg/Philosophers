@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:16:46 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/09 13:21:12 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/11 09:24:44 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,18 @@ int	main(int argc, char **argv)
     		ft_putstr_fd("Memory allocation failed\n", 2);
     		return (EXIT_FAILURE);
 	}
+	if (gettimeofday(&(data->start), NULL) == -1)
+	{
+    		ft_putstr_fd("Failed to get starting time\n", 2);
+		free(data);
+		return (EXIT_FAILURE);
+	}
 	if (get_arguments(data, argc, argv))
 	{
 		free(data);
 		return (EXIT_FAILURE);
 	}
-	//printf("%d\tn_philo\n", data->arg.n_philo);
-	//printf("%d\ttime_to_die\n", data->arg.time_to_die);
-	//printf("%d\ttime_to_eat\n", data->arg.time_to_eat);
-	//printf("%d\ttime_to_sleep\n", data->arg.time_to_sleep);
-	//printf("%d\tn_meals\n", data->arg.n_meals);
+	printf("%ld data->start as the entry point of the program\n", data->start.tv_sec);
 	free(data);
 	return (EXIT_SUCCESS);
 }
