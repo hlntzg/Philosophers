@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:03:13 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/11 17:04:00 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/16 12:14:05 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,34 @@ typedef struct s_args
 	int	n_meals;
 }	t_args;
 
+typedef pthread_mutex_t	t_mutex;
+
+typedef struct s_mtx
+{
+	t_mutex	*philos;
+	t_mutex	*forks;
+	t_mutex	*print;
+}	t_mtx;
+
 typedef enum s_status
 {
 	EAT,
 	SLEEP,
 	THINK,
+	NOT_DEAD,
 	DEAD
 }	t_status;
 
 typedef struct s_philo
 {
-	t_status	status;
-	t_time		last_meal;
 	int			id;
 	int			count_meal;
+	int			living_status;
+	t_status	status;
+	t_time		last_meal;
+	t_mutex		*f_right;
+	t_mutex		*f_left;
+	t_mutex		*print;
 }	t_philo;
 
 typedef struct s_data
@@ -60,12 +74,19 @@ typedef struct s_data
 	t_args	arg;
 	t_time	start;
 	t_philo	*philo;
+	t_mtx	*mtx;
 }	t_data;
 
+// init
+void	init_data_args(t_data *data, int i, int nb);
+int		get_arguments(t_data *data, int argc, char **argv);
+
+// utils
 int		ft_atoi(char *str);
 size_t	ft_strlen(char *str);
 void	ft_putstr_fd(char *str, int fd);
 
+// tools
 unsigned long	elapsed_time(t_time start);
 
 #endif

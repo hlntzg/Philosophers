@@ -6,7 +6,7 @@
 #    By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 13:22:47 by hutzig            #+#    #+#              #
-#    Updated: 2024/10/09 15:03:54 by hutzig           ###   ########.fr        #
+#    Updated: 2024/10/16 08:39:28 by hutzig           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,10 @@ CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -rf
 
 SOURCES = main.c \
+	init_args.c \
+	init_philo.c \
+	rotine.c \
+	tools.c \
 	utils.c \
 	ft_atoi.c \
 

@@ -6,47 +6,11 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:16:46 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/11 17:04:04 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/16 13:48:50 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	init_data_args(t_data *data, int i, int nb)
-{
-	if (i == 1)
-		data->arg.n_philo = nb;
-	else if (i == 2)
-		data->arg.time_to_die = nb;
-	else if (i == 3)
-		data->arg.time_to_eat = nb;
-	else if (i == 4)
-		data->arg.time_to_sleep = nb;
-	else if (i == 5)
-		data->arg.n_meals = nb;
-	else
-		data->arg.n_meals = 0;
-}
-
-int	get_arguments(t_data *data, int argc, char **argv)
-{
-	int	i;
-	int	tmp;
-
-	i = 0;
-	while (++i < argc)
-	{
-		tmp = ft_atoi(argv[i]);
-		if (tmp <= 0)
-		{
-			ft_putstr_fd(argv[i], 2);
-			ft_putstr_fd(": Invalid argument\n", 2);
-			return (EXIT_FAILURE);
-		}
-		init_data_args(data, i, tmp);
-	}
-	return (EXIT_SUCCESS);
-}
 
 int	main(int argc, char **argv)
 {
@@ -74,8 +38,10 @@ int	main(int argc, char **argv)
 		free(data);
 		return (EXIT_FAILURE);
 	}
-	initialization
-	//printf("%ld data->start as the entry point of the program\n", data->start.tv_sec);
-	free(data);
+	if (init_data(&data))
+	//	ft_free(data);  and return ();
+	// if (get_threads())
+	//	ft_free(data);  and return ();
+	//ft_free(data);
 	return (EXIT_SUCCESS);
 }
