@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:16:46 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/16 13:48:50 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/17 10:15:41 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,23 @@ int	main(int argc, char **argv)
 		free(data);
 		return (EXIT_FAILURE);
 	}
-	if (init_data(&data))
-	//	ft_free(data);  and return ();
-	// if (get_threads())
-	//	ft_free(data);  and return ();
+	if (init_data(&data) != 0)
+	{
+	//	ft_free(data);
+		return (EXIT_FAILURE);
+	}
+	//if (set_threads()!= 0)
+	//{
+	//	ft_free(data);
+	//	return (EXIT_FAILURE);
+	//}
 	//ft_free(data);
 	return (EXIT_SUCCESS);
 }
+/* keep in mind:
+ft_free: All allocated memory is properly freed.
+Mutexes are destroyed before freeing any associated memory.
+
+In main: You should free all memory (for example, data, data->mtx, data->philo, etc.) when exiting the program.
+If init_data fails: Ensure to destroy any initialized mutexes and free any allocated memory before returning.
+*/
