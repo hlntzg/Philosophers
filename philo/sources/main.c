@@ -6,11 +6,13 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:16:46 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/17 10:15:41 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/29 18:07:00 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+
 
 int	main(int argc, char **argv)
 {
@@ -33,17 +35,17 @@ int	main(int argc, char **argv)
 		free(data);
 		return (EXIT_FAILURE);
 	}
-	if (get_arguments(data, argc, argv))
+	if (init_args(data, argv) != 0)
 	{
 		free(data);
 		return (EXIT_FAILURE);
 	}
 	if (init_data(&data) != 0)
 	{
-	//	ft_free(data);
+	//	ft_free(data); //free everyhing and destroy mutexes! 
 		return (EXIT_FAILURE);
 	}
-	//if (set_threads()!= 0)
+	if (init_dining_philosophers(data)!= 0)
 	//{
 	//	ft_free(data);
 	//	return (EXIT_FAILURE);

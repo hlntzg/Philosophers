@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 08:23:47 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/11 16:30:17 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/29 11:19:29 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,9 @@ unsigned long	elapsed_time(t_time start)
 }
 
 ft_usleep() // uslepp() is not so precise 
+
+int	error(char *str)
+{
+	ft_putstr_fd(str, 2);
+	return (EXIT_FAILURE);
+}

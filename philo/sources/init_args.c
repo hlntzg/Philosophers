@@ -6,13 +6,53 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:34:39 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/16 08:35:06 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/29 11:02:17 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_data_args(t_data *data, int i, int nb)
+int	init_args(t_data *data, char **argv)
+{
+	data->arg.n_philo = ft_atoi(argv[1]);
+	if (data->arg.n_philo <= 0)
+	{
+		ft_putstr_fd("Number of philosophers: Invalid argument\n", 2);
+		return (EXIT_FAILURE);
+	}
+	data->arg.time_to_die = ft_atoi(argv[2]);
+	if (data->arg.time_to_die <= 0)
+	{
+		ft_putstr_fd("Time to die: Invalid argument\n", 2);
+		return (EXIT_FAILURE);
+	}
+	data->arg.time_to_eat = ft_atoi(argv[3]);
+	if (data->arg.time_to_eat <= 0)
+	{
+		ft_putstr_fd("Time to eat: Invalid argument\n", 2);
+		return (EXIT_FAILURE);
+	}
+	data->arg.time_to_sleep = ft_atoi(argv[4]);
+	if (data->arg.time_to_sleep <= 0)
+	{
+		ft_putstr_fd("Time to sleep: Invalid argument\n", 2);
+		return (EXIT_FAILURE);
+	}
+	data->arg.n_meals = 0;
+	if (argv[5])
+	{
+		data->arg.n_meals = ft_atoi(argv[5]);
+		if (data->arg.n_meal <= 0)
+		{
+			ft_putstr_fd("Number of meals: Invalid argument\n", 2);
+			return (EXIT_FAILURE);
+		}
+	}
+	return (EXIT_SUCCESS);
+}
+
+/*
+static void	init_args(t_data *data, int i, int nb)
 {
 	if (i == 1)
 		data->arg.n_philo = nb;
@@ -43,7 +83,7 @@ int	get_arguments(t_data *data, int argc, char **argv)
 			ft_putstr_fd(": Invalid argument\n", 2);
 			return (EXIT_FAILURE);
 		}
-		init_data_args(data, i, tmp);
+		init_args(data, i, tmp);
 	}
 	return (EXIT_SUCCESS);
-}
+}*/

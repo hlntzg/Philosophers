@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:03:13 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/16 12:14:05 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/29 16:08:05 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ typedef pthread_mutex_t	t_mutex;
 
 typedef struct s_mtx
 {
-	t_mutex	*philos;
-	t_mutex	*forks;
-	t_mutex	*print;
+	t_mutex	*philos;	// Array of mutexes for philosophers
+	t_mutex	*forks;		// Array of mutexes for forks
+	t_mutex	*print;		// Single mutex for printing
 }	t_mtx;
 
 typedef enum s_status
@@ -56,6 +56,13 @@ typedef enum s_status
 	NOT_DEAD,
 	DEAD
 }	t_status;
+
+typedef enum s_state
+{
+	NOT_DEAD,
+	FULL,
+	OVER,
+}	t_state;
 
 typedef struct s_philo
 {
@@ -78,8 +85,7 @@ typedef struct s_data
 }	t_data;
 
 // init
-void	init_data_args(t_data *data, int i, int nb);
-int		get_arguments(t_data *data, int argc, char **argv);
+int	init_args(t_data *data, char **argv);
 
 // utils
 int		ft_atoi(char *str);
