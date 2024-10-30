@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:16:46 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/29 18:07:00 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/30 14:33:54 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,14 @@ int	main(int argc, char **argv)
 	t_data	*data;
 	
 	if (argc != 5 && argc != 6)
-	{
-		ft_putstr_fd("Invalid number of argument\n", 2);
-		return (EXIT_FAILURE);
-	}
+		return (error("Invalid number of argument"));
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
-	{
-    		ft_putstr_fd("Memory allocation failed\n", 2);
-    		return (EXIT_FAILURE);
-	}
+		return (error("Memory allocation failed"));
 	if (gettimeofday(&(data->start), NULL) == -1)
 	{
-    		ft_putstr_fd("Failed to get starting time\n", 2);
 		free(data);
-		return (EXIT_FAILURE);
+		return (error("Failed to get starting time"));
 	}
 	if (init_args(data, argv) != 0)
 	{

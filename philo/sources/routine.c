@@ -6,29 +6,28 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 13:06:35 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/29 18:26:22 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/30 15:08:33 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	to_think()
+void	to_think(t_philo *philo)
 {
-	get_status(philo, THINK);
-	get_message();
+	set_status(philo, THINKING);
+	get_message(philo, NULL);
 }
 
-int	to_sleep()
+int	to_sleep(t_philo *philo)
 {
-	get_status(philo, SLEEP);
-	get_message();
+	set_status(philo, SLEEPING);
+	get_message(philo, NULL);
 	ft_sleep();
 }
 
-int	to_eat()
+int	to_eat(t_philo *philo)
 {
-	get_status(philo, EAT);
-	get_message();
+	set_status(philo, EATING);
+	get_message(philo, NULL);
 	ft_sleep();
 }
-

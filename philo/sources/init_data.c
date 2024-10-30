@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:41:38 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/29 16:38:56 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/30 16:18:36 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	set_philo_mtx(t_data *data, t_philo *philo, int i)
 {
 	philo->print = &(data->mtx->print);
+	philo->philo_mtx = &(data->mtx->philos[i]); 
     	philo->f_right = &(data->mtx->forks[i]);
 	if (i == 0)
         	philo->f_left = &(data->mtx->forks[data->arg.n_philo - 1]);
@@ -44,7 +45,7 @@ static void	destroy_mutexes(t_mutex **mutex_array, int i, t_mutex **single_mutex
 {
 	if (mutex_array != NULL && *mutex_array != NULL)
 	{
-		while (i-- >= 0)
+		while (i-- > 0)
 			pthread_mutex_destroy(&(*mutex_array)[i]);
 		free(*mutex_array);
 		*mutex_array = NULL;
