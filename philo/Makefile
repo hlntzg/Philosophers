@@ -6,7 +6,7 @@
 #    By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 13:22:47 by hutzig            #+#    #+#              #
-#    Updated: 2024/10/16 08:39:28 by hutzig           ###   ########.fr        #
+#    Updated: 2024/10/30 13:08:54 by hutzig           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ DIR_SRC = ./sources
 DIR_OBJ = $(DIR_SRC)/objects
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread
+CFLAGS = -Wall -Wextra -Werror -lpthread
 RM = rm -rf
 
 SOURCES = main.c \
