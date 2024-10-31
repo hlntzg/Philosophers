@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 08:23:47 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/30 16:34:22 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/31 14:36:49 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ long	elapsed_time(t_time start)
 	long	et_sec;
 	long	et_usec;
 
-	if (gettimeofday(&end, NULL) == -1)
+	if (gettimeofday(&end, NULL) != 0)
 		return (-1);
 	et_sec = (end.tv_sec - start.tv_sec);
 	et_usec = (end.tv_usec - start.tv_usec);
@@ -54,6 +54,21 @@ void	set_status(t_philo *philo, t_status status)
 {
 	pthread_mutex_lock(philo->philo_mtx);
 	philo->status = status;
+	if (status == EATING)
+	{
+		if (gettimeofday(&(philo->last_meal), NULL) == -1)
+		{
+			pthread_mutex_unlock(philo->philo_mtx);
+			return (-1);
+		}
+	}
+	pthread_mutex_unlock(philo->philo_mtx);
+}
+
+void	set_state(t_philo *philo, t_state state)
+{
+	pthread_mutex_lock(philo->philo_mtx);
+	philo->state = state;
 	pthread_mutex_unlock(philo->philo_mtx);
 }
 
@@ -63,9 +78,9 @@ void	get_message(t_philo *philo, char *str)
 	long	timestamp;
 
 	pthread_mutex_lock(philo->print);
-	timestamp = elapsed_time(); // need to get time passed since data->start, but we dont share t_data here of before!
+	timestamp = elapsed_time(philo->started_time); // if it fails?
 	if (str)
-		printf();
+		printf("%lu %d %s\n", timestamp, philo->id, str);
 	else
 	{
 		if (philo->status == THINKING)
@@ -74,7 +89,7 @@ void	get_message(t_philo *philo, char *str)
 			info = "is sleeping";
 		else if (philo->status == EATING)
 			info = "is eating";
-		printf();
+		printf("%lu %d %s\n", timestamp, philo->id, info);
 	}
 	pthread_mutex_lock(philo->print);
 }

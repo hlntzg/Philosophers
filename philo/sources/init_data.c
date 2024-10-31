@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:41:38 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/30 16:18:36 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/31 08:48:26 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ static void	init_philo(t_data **data)
 	{
 		(*data).philo[i]->id = i + 1;
 		(*data).philo[i]->count_meal = 0;
-		(*data).philo[i]->state = NOT_DEAD;
-		(*data).philo[i]->status = THINK;
+		(*data).philo[i]->state = LIVING;
+		(*data).philo[i]->status = THINKING;
+		(*data).philo[i]->started_time.tv_sec = (*data)->start.tv_sec;
+		(*data).philo[i]->started_time.tv_sec = (*data)->start.tv_sec;
 		(*data).philo[i]->last_meal.tv_sec = (*data)->start.tv_sec;
 		(*data).philo[i]->last_meal.tv_usec = (*data)->start.tv_usec;
 		set_philo_mtx(*data, &((*data)->philo[i]), i);

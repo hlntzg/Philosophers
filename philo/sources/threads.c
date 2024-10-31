@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:23:18 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/30 14:51:16 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/31 14:38:53 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,87 @@ static void	*routine(void *arg)
 	return (NULL);
 }
 
+void	terminate_threads(t_data *data, int nb)
+{
+	int	i;
+
+	i = 0;
+	while (i < nb)
+	{
+		set_state(philo[i], OVER);
+		if (pthread_join(data->philo[i].thread_id, NULL) != 0)
+			return (error("pthread_join() failed"));
+		i++;
+	}
+}
+
+int	check_dead(t_philo *philo)
+{
+	t_time	last_meal_time;
+	long	starving_time;
+	
+	pthread_mutex_lock(philo->philo_mtx);
+	last_meal_time = philo->last_meal;
+	pthread_mutex_lock(philo->philo_mtx);
+	starving_time = elapsed_time(last_meal_time);
+	if (starving_time == -1)
+		return (-1)
+	if (starving_time > data->arg.time_to_die)
+	{
+		get_message(philo, "died");
+		return (1);
+	}
+	return (0);
+}
+
+/* 0 is considered "false," and any non-zero value is "true." */
+int	philos_dead(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->arg.n_philo)
+	{
+		if (check_dead(data->philo[i]))
+		{
+			terminate_threads(data, data->arg.n_philo);
+			return (1);
+		}
+		i++;
+	}
+	return (0);	
+}
+
+int	philos_full(t_data *data)
+{
+	int	i;
+	int	full;
+
+	i = 0;
+	full = 0;
+	while (i < data->arg.n_philo)
+	{
+		if (get_state(data->philo[i]) == FULL)
+			full++;	
+		i++;
+	}
+	if (full == data->arg.n_philo)
+	{
+		terminate_threads(data, data->arg.n_philo);
+		return (1);
+	}
+	return (0);
+}
+
+void	monitoring(t_data *data)
+{
+	while (1)
+	{
+		if (philos_dead(data) || philos_full(data))
+			break ;
+	}
+}
+
 int	init_dining_philosophers(t_data *data)
 {
 	pthread_t	*th;
@@ -46,13 +127,13 @@ int	init_dining_philosophers(t_data *data)
 	{
 		if (pthread_create(&th[i], NULL, &routine, &data->philo[i]) != 0)
 		{
-			exit_all_threads(); //// work on this function
+			terminate_threads(data, i);
 			return (error("Failed to create thread"));
 		}
 		data->philo[i].thread_id = th[i];
 		i++;
 	}
-	monitoring(); /// work on this function
+	monitoring(data);
 	free(th);
 	return (EXIT_SUCCESS);
 }
