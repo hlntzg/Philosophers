@@ -6,19 +6,49 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:16:46 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/31 14:54:18 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/31 17:42:52 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	free_all(t_data *data)
+void	clean_up_all(t_data *data)
 {
-	//destroy and free mutex allocated memory
-	destroy_mutexes(NULL, 0, &(data->mtx->print)); 
-	destroy_mutexes(destroy_mutexes(&(data->mtx->forks), data->arg.n_philo, NULL);
-	destroy_mutexes(destroy_mutexes(&(data->mtx->philos), data->arg.n_philo, NULL);
-	// free allocated memory from data
+	if (data->mtx->print != NULL)
+		destroy_mutexes(NULL, 0, &(data->mtx->print)); 
+	if (data->mtx->forks != NULL)
+		destroy_mutexes(destroy_mutexes(&(data->mtx->forks), data->arg.n_philo, NULL);
+	if (data->mtx->philos != NULL)
+		destroy_mutexes(destroy_mutexes(&(data->mtx->philos), data->arg.n_philo, NULL);
+	if (data->mtx)
+		free(data->mtx);
+	if (data->philo)
+		free(data->mtx);
+	free(data);
+}	
+
+int	init_args(t_data *data, char **argv)
+{
+	data->arg.n_philo = ft_atoi(argv[1]);
+	if (data->arg.n_philo <= 0)
+		return (error("Number of philosophers: Invalid argument"));
+	data->arg.time_to_die = ft_atoi(argv[2]);
+	if (data->arg.time_to_die <= 0)
+		return (error("Time to die: Invalid argument"));
+	data->arg.time_to_eat = ft_atoi(argv[3]);
+	if (data->arg.time_to_eat <= 0)
+		return (error("Time to eat: Invalid argument"));
+	data->arg.time_to_sleep = ft_atoi(argv[4]);
+	if (data->arg.time_to_sleep <= 0)
+		return (error("Time to sleep: Invalid argument"));
+	data->arg.n_meals = 0;
+	if (argv[5])
+	{
+		data->arg.n_meals = ft_atoi(argv[5]);
+		if (data->arg.n_meal <= 0)
+			return (error("Number of meals: Invalid argument"));
+	}
+	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -42,15 +72,15 @@ int	main(int argc, char **argv)
 	}
 	if (init_data(&data))
 	{
-	//	free_all(data); //free everyhing and destroy mutexes! 
+		clean_up_all(data);
 		return (EXIT_FAILURE);
 	}
 	if (init_dining_philosophers(data))
-	//{
-	//	free_all(data);
+	{
+		clean_up_all(data);
 		return (EXIT_FAILURE);
-	//}
-	//free_all(data);
+	}
+	clean_up_all(data);
 	return (EXIT_SUCCESS);
 }
 /* keep in mind:

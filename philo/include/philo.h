@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:03:13 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/29 16:08:05 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/10/31 08:48:48 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,14 @@ typedef struct s_mtx
 
 typedef enum s_status
 {
-	EAT,
-	SLEEP,
-	THINK,
-	NOT_DEAD,
-	DEAD
+	EATING,
+	SLEEPING,
+	THINKING,
 }	t_status;
 
 typedef enum s_state
 {
-	NOT_DEAD,
+	LIVING,
 	FULL,
 	OVER,
 }	t_state;
@@ -68,12 +66,16 @@ typedef struct s_philo
 {
 	int			id;
 	int			count_meal;
-	int			living_status;
+	pthread_t	thread_id;
+	t_args		arg;
 	t_status	status;
+	t_state		state;
+	t_time		started_time;
 	t_time		last_meal;
+	t_mutex		*philo_mtx;
+	t_mutex		*print;
 	t_mutex		*f_right;
 	t_mutex		*f_left;
-	t_mutex		*print;
 }	t_philo;
 
 typedef struct s_data
