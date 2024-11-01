@@ -32,11 +32,11 @@ typedef struct timeval	t_time;
 
 typedef struct s_args
 {
-	int	n_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	n_meals;
+	int		n_philo;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		n_meals;
 	t_time	start;
 }	t_args;
 

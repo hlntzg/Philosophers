@@ -16,10 +16,10 @@ static void	*routine(void *arg)
 {
 	t_philo	*philo;
 
-	philo = (t_philo *) arg;
+	philo = (t_philo *)arg;
 	if (philo->id % 2 != 0)
 	{
-		to_think(philo); 
+		to_think(philo);
 		ft_usleep(philo, philo->arg.time_to_eat / 2);
 	}
 	while (philo->state != OVER)
@@ -59,9 +59,10 @@ int	dining_philosophers(t_data *data)
 	i = 0;
 	while (i < data->arg.n_philo)
 	{
-		if (pthread_create(&th[i], NULL, &routine, &data->philo[i]) != 0)
+		if (pthread_create(&th[i], NULL, &routine, &(data->philo[i])) != 0)
 		{
 			terminate_threads(data, i);
+			free(th);
 			return (error("Failed to create thread"));
 		}
 		data->philo[i].thread_id = th[i];
@@ -81,7 +82,7 @@ int	check_dead(t_philo *philo)
 	
 	pthread_mutex_lock(philo->philo_mtx);
 	last_meal_time = philo->last_meal;
-	pthread_mutex_lock(philo->philo_mtx);
+	pthread_mutex_unlock(philo->philo_mtx);
 	starving_time = elapsed_time(last_meal_time);
 	if (starving_time == -1)
 		return (-1);

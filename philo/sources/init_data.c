@@ -16,10 +16,10 @@ static void	set_philo_mtx(t_data *data, t_philo *philo, int i)
 {
 	philo->print = (data->mtx->print);
 	philo->philo_mtx = &(data->mtx->philos[i]); 
-    	philo->f_right = &(data->mtx->forks[i]);
+    philo->f_right = &(data->mtx->forks[i]);
 	if (i == 0)
-        	philo->f_left = &(data->mtx->forks[data->arg.n_philo - 1]);
-    	else
+        philo->f_left = &(data->mtx->forks[data->arg.n_philo - 1]);
+    else
 		philo->f_left = &(data->mtx->forks[i - 1]);
 }
 
@@ -32,8 +32,10 @@ static void	init_philo(t_data **data)
 	{
 		(*data)->philo[i].id = i + 1;
 		(*data)->philo[i].count_meal = 0;
+		(*data)->philo[i].arg = (*data)->arg;
 		(*data)->philo[i].state = LIVING;
 		(*data)->philo[i].status = THINKING;
+		//(*data)->philo[i].last_meal = (*data)->arg.start;
 		(*data)->philo[i].last_meal.tv_sec = (*data)->arg.start.tv_sec;
 		(*data)->philo[i].last_meal.tv_usec = (*data)->arg.start.tv_usec;
 		set_philo_mtx(*data, &((*data)->philo[i]), i);

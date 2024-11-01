@@ -23,7 +23,7 @@ static int	clean_up_and_exit(t_data *data, int code)
 	if (data->mtx)
 		free(data->mtx);
 	if (data->philo)
-		free(data->mtx);
+		free(data->philo);
 	free(data);
 	return (code);
 }	
@@ -49,7 +49,7 @@ static int	init_args(t_data *data, char **argv)
 		if (data->arg.n_meals <= 0)
 			return (error("Number of meals: Invalid argument\n"));
 	}
-	if (gettimeofday(&(data->arg.start), NULL) == -1)
+	if (gettimeofday(&data->arg.start, NULL) == -1)
 		return (error("Failed to get starting time"));
 	return (EXIT_SUCCESS);
 }
@@ -57,7 +57,7 @@ static int	init_args(t_data *data, char **argv)
 int	main(int argc, char **argv)
 {
 	t_data	*data;
-	
+
 	if (argc != 5 && argc != 6)
 		return (error("Invalid number of argument\n"));
 	data = (t_data *)malloc(sizeof(t_data));

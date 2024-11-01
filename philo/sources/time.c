@@ -15,10 +15,12 @@
 long	elapsed_time(t_time start)
 {
 	t_time	end;
+	long 	elapsed_ms;
 
 	if (gettimeofday(&end, NULL) != 0)
 		return (-1);
-	return (((end.tv_sec - start.tv_sec) * 1000) + ((end.tv_usec - start.tv_usec) / 1000));
+    elapsed_ms = (end.tv_sec - start.tv_sec) * 1000 + (end.tv_usec - start.tv_usec) / 1000;
+    return (elapsed_ms);
 }
 
 int	ft_usleep(t_philo *philo, long time)
