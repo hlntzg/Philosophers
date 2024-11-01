@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:03:13 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/31 08:48:48 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/01 09:58:01 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_args
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	n_meals;
+	t_time	start;
 }	t_args;
 
 typedef pthread_mutex_t	t_mutex;
@@ -70,7 +71,6 @@ typedef struct s_philo
 	t_args		arg;
 	t_status	status;
 	t_state		state;
-	t_time		started_time;
 	t_time		last_meal;
 	t_mutex		*philo_mtx;
 	t_mutex		*print;
@@ -81,20 +81,45 @@ typedef struct s_philo
 typedef struct s_data
 {
 	t_args	arg;
-	t_time	start;
 	t_philo	*philo;
 	t_mtx	*mtx;
 }	t_data;
 
 // init
-int	init_args(t_data *data, char **argv);
+int	init_data(t_data **data);
+int	init_mutexes(t_data *data);
+void	destroy_mutexes(t_mutex **mutex_array, int i, t_mutex **single_mutex);
+
+
+int	dining_philosophers(t_data *data);
+
+// could be monitoring .c file
+void	monitoring(t_data *data);
+int	philos_full(t_data *data);
+int	philos_dead(t_data *data);
+int	check_dead(t_philo *philo);
+
+// routine
+void	to_think(t_philo *philo);
+int		to_sleep(t_philo *philo);
+int		to_eat(t_philo *philo);
+int		get_the_forks(t_philo *philo);
+void	let_the_forks(t_philo *philo);
+
+// tools
+int		set_status(t_philo *philo, t_status status);
+void	get_message(t_philo *philo, char *str);
+void	set_state(t_philo *philo, t_state state);
+int	get_state(t_philo *philo);
+
+// time
+long	elapsed_time(t_time start);
+int	ft_usleep(t_philo *philo, long time);
 
 // utils
 int		ft_atoi(char *str);
-size_t	ft_strlen(char *str);
 void	ft_putstr_fd(char *str, int fd);
 
-// tools
-unsigned long	elapsed_time(t_time start);
+int	error(char *str);
 
 #endif

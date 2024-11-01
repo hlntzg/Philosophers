@@ -6,7 +6,7 @@
 #    By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 13:22:47 by hutzig            #+#    #+#              #
-#    Updated: 2024/10/30 13:08:54 by hutzig           ###   ########.fr        #
+#    Updated: 2024/11/01 10:29:52 by hutzig           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,16 +16,17 @@ DIR_SRC = ./sources
 DIR_OBJ = $(DIR_SRC)/objects
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -lpthread
+CFLAGS = -Wall -Wextra -Werror -pthread
 RM = rm -rf
 
 SOURCES = main.c \
-	init_args.c \
-	init_philo.c \
-	rotine.c \
+	init_data.c \
+	mutexes.c \
+	routine.c \
 	tools.c \
+	threads.c \
+	time.c \
 	utils.c \
-	ft_atoi.c \
 
 SRC = $(addprefix $(DIR_SRC)/,$(SOURCES))
 

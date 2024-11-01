@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:23:18 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/31 14:38:53 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/01 10:36:20 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,46 @@ static void	*routine(void *arg)
 	return (NULL);
 }
 
-void	terminate_threads(t_data *data, int nb)
+static int	terminate_threads(t_data *data, int nb)
 {
 	int	i;
 
 	i = 0;
 	while (i < nb)
 	{
-		set_state(philo[i], OVER);
+		set_state(&(data->philo[i]), OVER);
 		if (pthread_join(data->philo[i].thread_id, NULL) != 0)
 			return (error("pthread_join() failed"));
 		i++;
 	}
+	return (0);
 }
+
+int	dining_philosophers(t_data *data)
+{
+	pthread_t	*th;
+	int		i;
+
+	th = (pthread_t *)malloc(sizeof(pthread_t) * data->arg.n_philo);
+	if (!th)
+		return (error("Memory allocation failed"));
+	i = 0;
+	while (i < data->arg.n_philo)
+	{
+		if (pthread_create(&th[i], NULL, &routine, &data->philo[i]) != 0)
+		{
+			terminate_threads(data, i);
+			return (error("Failed to create thread"));
+		}
+		data->philo[i].thread_id = th[i];
+		i++;
+	}
+	monitoring(data);
+	free(th);
+	return (EXIT_SUCCESS);
+}
+
+/* monitoring functions */
 
 int	check_dead(t_philo *philo)
 {
@@ -57,8 +84,8 @@ int	check_dead(t_philo *philo)
 	pthread_mutex_lock(philo->philo_mtx);
 	starving_time = elapsed_time(last_meal_time);
 	if (starving_time == -1)
-		return (-1)
-	if (starving_time > data->arg.time_to_die)
+		return (-1);
+	if (starving_time > philo->arg.time_to_die)
 	{
 		get_message(philo, "died");
 		return (1);
@@ -66,7 +93,6 @@ int	check_dead(t_philo *philo)
 	return (0);
 }
 
-/* 0 is considered "false," and any non-zero value is "true." */
 int	philos_dead(t_data *data)
 {
 	int	i;
@@ -74,7 +100,7 @@ int	philos_dead(t_data *data)
 	i = 0;
 	while (i < data->arg.n_philo)
 	{
-		if (check_dead(data->philo[i]))
+		if (check_dead(&(data->philo[i])))
 		{
 			terminate_threads(data, data->arg.n_philo);
 			return (1);
@@ -93,7 +119,7 @@ int	philos_full(t_data *data)
 	full = 0;
 	while (i < data->arg.n_philo)
 	{
-		if (get_state(data->philo[i]) == FULL)
+		if (get_state(&(data->philo[i])) == FULL)
 			full++;	
 		i++;
 	}
@@ -112,28 +138,4 @@ void	monitoring(t_data *data)
 		if (philos_dead(data) || philos_full(data))
 			break ;
 	}
-}
-
-int	init_dining_philosophers(t_data *data)
-{
-	pthread_t	*th;
-	int		i;
-
-	th = (pthread_t *)malloc(sizeof(pthread) * data->n_philo);
-	if (!th)
-		return (error("Memory allocation failed"));
-	i = 0;
-	while (i < data->arg.n_philo)
-	{
-		if (pthread_create(&th[i], NULL, &routine, &data->philo[i]) != 0)
-		{
-			terminate_threads(data, i);
-			return (error("Failed to create thread"));
-		}
-		data->philo[i].thread_id = th[i];
-		i++;
-	}
-	monitoring(data);
-	free(th);
-	return (EXIT_SUCCESS);
 }

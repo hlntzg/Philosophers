@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 13:06:35 by hutzig            #+#    #+#             */
-/*   Updated: 2024/10/31 09:56:06 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/01 10:33:23 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,28 @@ int	to_sleep(t_philo *philo)
 {
 	set_status(philo, SLEEPING);
 	get_message(philo, NULL);
-	if (ft_sleep(philo->arg.time_to_sleep) != 0)
+	if (ft_usleep(philo, philo->arg.time_to_sleep) != 0)
 		return (-1);
+	return (0);
 }
 
-int	get_state(t_philo *philo)
+int	to_eat(t_philo *philo)
 {
-	int	state;
-
+	if (get_the_forks(philo) != 0)
+		return (-1);
+	set_status(philo, EATING);
+	get_message(philo, NULL);
+	if (ft_usleep(philo, philo->arg.time_to_eat) != 0)
+		return (-1);
+	let_the_forks(philo);
 	pthread_mutex_lock(philo->philo_mtx);
-	state = philo->state;
+	philo->count_meal++;
+	if (philo->count_meal == philo->arg.n_meals)
+		philo->state = FULL;
 	pthread_mutex_unlock(philo->philo_mtx);
-	return (state);
+	return (0);
 }
+
 int	get_the_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->f_right);
@@ -58,21 +67,4 @@ void	let_the_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(philo->f_right);
 	pthread_mutex_unlock(philo->f_left);
-}
-
-int	to_eat(t_philo *philo)
-{
-	if (get_the_forks(philo) != 0)
-		return (-1);
-	set_status(philo, EATING);
-	get_message(philo, NULL);
-	if (ft_sleep(philo->arg.time_to_eat) != 0)
-		return (-1);
-	let_the_forks(philo);
-	pthread_mutex_lock(philo->philo_mtx);
-	philo->count_meal++;
-	if (philo->count_meal == philo->arg.n_meals)
-		philo->state = FULL;
-	pthread_mutex_unlock(philo->philo_mtx);
-	return (0);
 }
