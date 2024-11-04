@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:22:18 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/01 09:23:28 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 14:02:04 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	destroy_mutexes(t_mutex **mutex_array, int i, t_mutex **single_mutex)
 	}
 }
 
-static int init_mutex_array(t_data *data, t_mutex **mutex)
-{	
+static int	init_mutex_array(t_data *data, t_mutex **mutex)
+{
 	int	i;
 
 	*mutex = (t_mutex *)malloc((sizeof(t_mutex)) * data->arg.n_philo);
@@ -42,7 +42,7 @@ static int init_mutex_array(t_data *data, t_mutex **mutex)
 		if (pthread_mutex_init(&(*mutex)[i], NULL) != 0)
 		{
 			destroy_mutexes(mutex, i, NULL);
-    			return (error("pthread_mutex_init() failed\n"));
+			return (error("pthread_mutex_init() failed\n"));
 		}
 		i++;
 	}
@@ -74,7 +74,8 @@ int	init_mutexes(t_data *data)
 	}
 	if (init_mutex_array(data, &(data->mtx->philos)) != 0)
 	{
-		destroy_mutexes(&(data->mtx->forks), data->arg.n_philo, &(data->mtx->print));
+		destroy_mutexes(&(data->mtx->forks), data->arg.n_philo,
+			&(data->mtx->print));
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

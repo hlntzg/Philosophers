@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:23:18 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/04 11:41:50 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 14:13:47 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	terminate_threads(t_data *data, int nb)
 int	dining_philosophers(t_data *data)
 {
 	pthread_t	*th;
-	int		i;
+	int			i;
 
 	th = (pthread_t *)malloc(sizeof(pthread_t) * data->arg.n_philo);
 	if (!th)
@@ -80,12 +80,11 @@ int	dining_philosophers(t_data *data)
 }
 
 /* monitoring functions */
-
 int	check_dead(t_philo *philo)
 {
 	t_time	last_meal_time;
 	long	starving_time;
-	
+
 	pthread_mutex_lock(philo->philo_mtx);
 	last_meal_time = philo->last_meal;
 	pthread_mutex_unlock(philo->philo_mtx);
@@ -115,7 +114,7 @@ int	philos_dead(t_data *data)
 		}
 		i++;
 	}
-	return (0);	
+	return (0);
 }
 
 int	philos_full(t_data *data)
@@ -128,7 +127,7 @@ int	philos_full(t_data *data)
 	while (i < data->arg.n_philo)
 	{
 		if (get_state(&(data->philo[i])) == FULL)
-			full++;	
+			full++;
 		i++;
 	}
 	if (full == data->arg.n_philo)

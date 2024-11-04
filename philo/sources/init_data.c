@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 08:41:38 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/01 10:26:24 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 14:07:22 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 static void	set_philo_mtx(t_data *data, t_philo *philo, int i)
 {
 	philo->print = (data->mtx->print);
-	philo->philo_mtx = &(data->mtx->philos[i]); 
-    philo->f_right = &(data->mtx->forks[i]);
+	philo->philo_mtx = &(data->mtx->philos[i]);
+	philo->f_right = &(data->mtx->forks[i]);
 	if (i == 0)
-        philo->f_left = &(data->mtx->forks[data->arg.n_philo - 1]);
-    else
+		philo->f_left = &(data->mtx->forks[data->arg.n_philo - 1]);
+	else
 		philo->f_left = &(data->mtx->forks[i - 1]);
 }
 
@@ -52,7 +52,7 @@ int	init_data(t_data **data)
 	(*data)->mtx->forks = NULL;
 	(*data)->mtx->print = NULL;
 	if (init_mutexes(*data))
-    		return (EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	(*data)->philo = (t_philo *)malloc(sizeof(t_philo) * (*data)->arg.n_philo);
 	if (!(*data)->philo)
 		return (error("Memory allocation failed for t_philo *philo"));

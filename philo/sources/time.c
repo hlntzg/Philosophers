@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:48:40 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/04 11:16:02 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 14:09:53 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 long	elapsed_time(t_time start)
 {
 	t_time	end;
-	long 	elapsed_ms;
+	long	elapsed_ms;
 
 	if (gettimeofday(&end, NULL) != 0)
 		return (-1);
-    elapsed_ms = (end.tv_sec - start.tv_sec) * 1000 + (end.tv_usec - start.tv_usec) / 1000;
-    return (elapsed_ms);
+	elapsed_ms = (end.tv_sec - start.tv_sec) * 1000
+		+ (end.tv_usec - start.tv_usec) / 1000;
+	return (elapsed_ms);
 }
 
 int	ft_usleep(t_philo *philo, long time)

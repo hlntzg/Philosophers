@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 08:23:47 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/04 11:25:02 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 14:07:51 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	get_message(t_philo *philo, char *str)
 	long	timestamp;
 
 	pthread_mutex_lock(philo->print);
-	timestamp = elapsed_time(philo->arg.start); // if it fails?
+	timestamp = elapsed_time(philo->arg.start); //if it fails?
 	if (str)
 		printf("%ld %d %s\n", timestamp, philo->id, str);
 	else

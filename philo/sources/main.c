@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:16:46 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/04 10:25:05 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 14:03:08 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	clean_up_and_exit(t_data *data, int code)
 {
 	if (data->mtx->print != NULL)
-		destroy_mutexes(NULL, 0, &(data->mtx->print)); 
+		destroy_mutexes(NULL, 0, &(data->mtx->print));
 	if (data->mtx->forks != NULL)
 		destroy_mutexes(&(data->mtx->forks), data->arg.n_philo, NULL);
 	if (data->mtx->philos != NULL)
