@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:23:18 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/04 11:03:52 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 11:41:50 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	*routine(void *arg)
 	if (philo->id % 2 != 0)
 	{
 		to_think(philo);
+//		usleep(200);
 		ft_usleep(philo, philo->arg.time_to_eat / 2);
 	}
 	while (philo->state != OVER)
@@ -46,7 +47,6 @@ static int	terminate_threads(t_data *data, int nb)
 	i = 0;
 	while (i < nb)
 	{
-	//	set_state(&(data->philo[i]), OVER);
 		if (pthread_join(data->philo[i].thread_id, NULL) != 0)
 			return (error("pthread_join() failed"));
 		i++;

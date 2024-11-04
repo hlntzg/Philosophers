@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 13:06:35 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/04 11:09:38 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 11:50:47 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ int	get_the_forks(t_philo *philo)
 		return (-1);
 	}
 	get_message(philo, "has taken a fork");
+	if (philo->arg.n_philo == 1)
+	{
+		pthread_mutex_unlock(philo->f_right);
+		return (EXIT_FAILURE);
+	}
 	pthread_mutex_lock(philo->f_left);
 //	if (get_state(philo) == OVER)
 //	{

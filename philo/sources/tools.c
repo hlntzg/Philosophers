@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 08:23:47 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/04 11:17:10 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 11:25:02 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	set_status(t_philo *philo, t_status status)
 	philo->status = status;
 	if (status == EATING)
 	{
-		if (gettimeofday(&(philo->last_meal), NULL) == -1)
+		if (gettimeofday(&(philo->last_meal), NULL) != 0)
 		{
 			pthread_mutex_unlock(philo->philo_mtx);
 			return (-1);
