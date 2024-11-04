@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:23:18 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/01 10:36:20 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 11:03:52 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ static int	terminate_threads(t_data *data, int nb)
 	while (i < nb)
 	{
 		set_state(&(data->philo[i]), OVER);
+		i++;
+	}
+	i = 0;
+	while (i < nb)
+	{
+	//	set_state(&(data->philo[i]), OVER);
 		if (pthread_join(data->philo[i].thread_id, NULL) != 0)
 			return (error("pthread_join() failed"));
 		i++;
@@ -103,6 +109,7 @@ int	philos_dead(t_data *data)
 	{
 		if (check_dead(&(data->philo[i])))
 		{
+//			get_message(&(data->philo[i]), "died");
 			terminate_threads(data, data->arg.n_philo);
 			return (1);
 		}
@@ -138,5 +145,7 @@ void	monitoring(t_data *data)
 	{
 		if (philos_dead(data) || philos_full(data))
 			break ;
+	//	if (philos_full(data))
+	//		break ;
 	}
 }

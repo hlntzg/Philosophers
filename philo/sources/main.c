@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:16:46 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/01 09:59:18 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 10:25:05 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,3 @@ int	main(int argc, char **argv)
 		return (clean_up_and_exit(data, EXIT_FAILURE));
 	return (clean_up_and_exit(data, EXIT_SUCCESS));
 }
-

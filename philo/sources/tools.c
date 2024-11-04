@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 08:23:47 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/01 09:49:36 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 11:17:10 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ int	set_status(t_philo *philo, t_status status)
 	}
 	pthread_mutex_unlock(philo->philo_mtx);
 	return (0);
+}
+
+int	get_status(t_philo *philo)
+{
+	int	status;
+
+	pthread_mutex_lock(philo->philo_mtx);
+	status = philo->status;
+	pthread_mutex_unlock(philo->philo_mtx);
+	return (status);
 }
 
 void	get_message(t_philo *philo, char *str)

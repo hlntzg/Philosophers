@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:48:40 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/01 09:54:06 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 11:16:02 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@ int	ft_usleep(t_philo *philo, long time)
 		return (error("gettimeofday() failed on ft_usleep"));
 	while (1)
 	{
+		if (get_state(philo) == OVER)
+		{
+			if (get_status(philo) == EATING)
+				let_the_forks(philo);
+			return (-1);
+		}
 		current = elapsed_time(s_start);
 		if (current == -1)
 			return (error("elapsed_time() failed"));

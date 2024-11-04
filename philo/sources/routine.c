@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 13:06:35 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/01 10:33:23 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 11:09:38 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,19 @@ int	to_eat(t_philo *philo)
 int	get_the_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->f_right);
-	if (get_state(philo) == FULL)
+	if (get_state(philo) == OVER || get_state(philo) == FULL)
+	//if (get_state(philo) == OVER)
 	{
 		pthread_mutex_unlock(philo->f_right);
 		return (-1);
 	}
 	get_message(philo, "has taken a fork");
 	pthread_mutex_lock(philo->f_left);
-	if (get_state(philo) == FULL)
-	{
-		let_the_forks(philo);
-		return (-1);
-	}
+//	if (get_state(philo) == OVER)
+//	{
+//		let_the_forks(philo);
+//		return (-1);
+//	}
 	get_message(philo, "has taken a fork");
 	return (0);
 }

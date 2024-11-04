@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:03:13 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/01 09:58:01 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/04 11:17:52 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,10 @@ void	let_the_forks(t_philo *philo);
 
 // tools
 int		set_status(t_philo *philo, t_status status);
+int		get_status(t_philo *philo);
 void	get_message(t_philo *philo, char *str);
 void	set_state(t_philo *philo, t_state state);
-int	get_state(t_philo *philo);
+int		get_state(t_philo *philo);
 
 // time
 long	elapsed_time(t_time start);
