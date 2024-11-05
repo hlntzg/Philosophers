@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 10:23:18 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/05 09:44:14 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/05 15:50:20 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	*routine(void *arg)
 		to_think(philo);
 		ft_usleep(philo, philo->arg.time_to_eat / 2);
 	}
-	while (philo->state != OVER)
+	while (get_state(philo) != OVER)
 	{
 		if (to_eat(philo) != 0)
 			break ;
