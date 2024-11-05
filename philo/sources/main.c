@@ -50,7 +50,7 @@ static int	init_args(t_data *data, char **argv)
 			return (error("Number of meals: Invalid argument\n"));
 	}
 	if (gettimeofday(&data->arg.start, NULL) == -1)
-		return (error("Failed to get starting time"));
+		return (error("Failed to get starting time\n"));
 	return (EXIT_SUCCESS);
 }
 
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 		return (error("Invalid number of argument\n"));
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
-		return (error("Memory allocation failed"));
+		return (error("Memory allocation failed\n"));
 	if (init_args(data, argv))
 	{
 		free(data);

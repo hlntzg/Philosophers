@@ -17,7 +17,7 @@ long	elapsed_time(t_time start)
 	t_time	end;
 	long	elapsed_ms;
 
-	if (gettimeofday(&end, NULL) != 0)
+	if (gettimeofday(&end, NULL) == -1)
 		return (-1);
 	elapsed_ms = (end.tv_sec - start.tv_sec) * 1000
 		+ (end.tv_usec - start.tv_usec) / 1000;
@@ -31,7 +31,7 @@ int	ft_usleep(t_philo *philo, long time)
 
 	(void)philo;
 	if (gettimeofday(&s_start, NULL) == -1)
-		return (error("gettimeofday() failed on ft_usleep"));
+		return (-1);
 	while (1)
 	{
 		if (get_state(philo) == OVER)
@@ -42,10 +42,10 @@ int	ft_usleep(t_philo *philo, long time)
 		}
 		current = elapsed_time(s_start);
 		if (current == -1)
-			return (error("elapsed_time() failed"));
+			return (-1);
 		if (current >= time)
 			break ;
 		usleep(100);
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }

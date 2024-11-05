@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:03:13 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/04 13:54:34 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/05 10:44:34 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef pthread_mutex_t	t_mutex;
 
 /**
  * @n_philo: number of philos and forks (must be > 1).
- * @time_to_die, @time_to_eat, @time_to_sleep in ms.
+ * @time_to_die: @time_to_eat: @time_to_sleep: time in ms used for simulation.
  * @n_meals: (optional) mininum meals for each philo to stop the simulation.
  * @start: the starting time of the simulation in ms.
  */
@@ -55,7 +55,7 @@ typedef enum s_status
 
 typedef enum s_state
 {
-	LIVING,
+	OK,
 	FULL,
 	OVER,
 }	t_state;
@@ -78,7 +78,7 @@ typedef struct s_mtx
  * @thread_id: thread handle id.
  * @arg: pointer to the simulation parameters.
  * @status: philo's status (eating, sleeping, thinking).
- * @state: philo's thread state (living, full, over).
+ * @state: philo's thread state (ok, full, over).
  * @last_meal: initial time of last meal.
  * @philo_mtx: pointer to the philosopher's individual mutex.
  * @print: pointer to the global print mutex.
@@ -126,9 +126,10 @@ void	destroy_mutexes(t_mutex **mutex_array, int i, t_mutex **single_mutex);
  */
 int		dining_philosophers(t_data *data);
 void	monitoring(t_data *data);
-int		philos_full(t_data *data);
-int		philos_dead(t_data *data);
-int		check_dead(t_philo *philo);
+int		terminate_threads(t_data *data, int nb);
+//int		philos_full(t_data *data);
+//int		philos_dead(t_data *data);
+//int		check_dead(t_philo *philo);
 
 /** routine.c
  * philo's alternatively perform the actions: to_eat, to_sleep, to_think

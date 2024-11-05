@@ -6,7 +6,7 @@
 #    By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/08 13:22:47 by hutzig            #+#    #+#              #
-#    Updated: 2024/11/01 10:29:52 by hutzig           ###   ########.fr        #
+#    Updated: 2024/11/05 09:34:40 by hutzig           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,13 @@ NAME = philo
 DIR_SRC = ./sources
 DIR_OBJ = $(DIR_SRC)/objects
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -lpthread
 RM = rm -rf
 
 SOURCES = main.c \
 	init_data.c \
+	monitoring.c \
 	mutexes.c \
 	routine.c \
 	tools.c \
@@ -37,7 +38,7 @@ HEADER = -I ./include
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	@$(CC) $(OBJECTS) $(HEADER) -o $@
+	@$(CC) $(OBJECTS) $(CFLAGS) $(HEADER) -o $@
 	@echo "philo program has been generated"
 
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.c | $(DIR_OBJ)

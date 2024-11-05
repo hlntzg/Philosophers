@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 13:06:35 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/04 11:50:47 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/05 10:40:52 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	to_think(t_philo *philo)
 {
 	set_status(philo, THINKING);
-	get_message(philo, NULL); // should check for faild on gettimeofday?
+	get_message(philo, NULL);
 }
 
 int	to_sleep(t_philo *philo)
@@ -47,8 +47,7 @@ int	to_eat(t_philo *philo)
 int	get_the_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->f_right);
-	if (get_state(philo) == OVER || get_state(philo) == FULL)
-	//if (get_state(philo) == OVER)
+	if (get_state(philo) == OVER)
 	{
 		pthread_mutex_unlock(philo->f_right);
 		return (-1);
@@ -57,14 +56,14 @@ int	get_the_forks(t_philo *philo)
 	if (philo->arg.n_philo == 1)
 	{
 		pthread_mutex_unlock(philo->f_right);
-		return (EXIT_FAILURE);
+		return (-1);
 	}
 	pthread_mutex_lock(philo->f_left);
-//	if (get_state(philo) == OVER)
-//	{
-//		let_the_forks(philo);
-//		return (-1);
-//	}
+	if (get_state(philo) == OVER)
+	{
+		let_the_forks(philo);
+		return (-1);
+	}
 	get_message(philo, "has taken a fork");
 	return (0);
 }

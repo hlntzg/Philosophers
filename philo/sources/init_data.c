@@ -33,9 +33,8 @@ static void	init_philo(t_data **data)
 		(*data)->philo[i].id = i + 1;
 		(*data)->philo[i].count_meal = 0;
 		(*data)->philo[i].arg = (*data)->arg;
-		(*data)->philo[i].state = LIVING;
+		(*data)->philo[i].state = OK;
 		(*data)->philo[i].status = THINKING;
-		//(*data)->philo[i].last_meal = (*data)->arg.start;
 		(*data)->philo[i].last_meal.tv_sec = (*data)->arg.start.tv_sec;
 		(*data)->philo[i].last_meal.tv_usec = (*data)->arg.start.tv_usec;
 		set_philo_mtx(*data, &((*data)->philo[i]), i);
@@ -47,7 +46,7 @@ int	init_data(t_data **data)
 {
 	(*data)->mtx = (t_mtx *)malloc(sizeof(t_mtx));
 	if (!(*data)->mtx)
-		return (error("Memory allocation failed for t_mtx *mtx"));
+		return (error("Memory allocation failed for mtx structure\n"));
 	(*data)->mtx->philos = NULL;
 	(*data)->mtx->forks = NULL;
 	(*data)->mtx->print = NULL;
@@ -55,7 +54,7 @@ int	init_data(t_data **data)
 		return (EXIT_FAILURE);
 	(*data)->philo = (t_philo *)malloc(sizeof(t_philo) * (*data)->arg.n_philo);
 	if (!(*data)->philo)
-		return (error("Memory allocation failed for t_philo *philo"));
+		return (error("Memory allocation failed for philo structure\n"));
 	init_philo(data);
 	return (EXIT_SUCCESS);
 }
