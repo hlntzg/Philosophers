@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:48:40 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/06 08:54:13 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/06 10:32:41 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	ft_usleep(t_philo *philo, long time)
 	t_time	s_start;
 	long	current;
 
-	(void)philo;
 	if (gettimeofday(&s_start, NULL) == -1)
 		return (-1);
 	while (1)

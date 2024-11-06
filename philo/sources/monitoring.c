@@ -6,11 +6,22 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:31:33 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/06 08:45:51 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/06 10:32:12 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+void	monitoring(t_data *data)
+{
+	while (1)
+	{
+		if (philos_dead(data))
+			break ;
+		if (philos_full(data))
+			break ;
+	}
+}
 
 static int	check_dead(t_philo *philo)
 {
@@ -65,15 +76,4 @@ static int	philos_full(t_data *data)
 		return (1);
 	}
 	return (0);
-}
-
-void	monitoring(t_data *data)
-{
-	while (1)
-	{
-		if (philos_dead(data))
-			break ;
-		if (philos_full(data))
-			break ;
-	}
 }
