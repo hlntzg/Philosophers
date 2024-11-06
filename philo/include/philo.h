@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:03:13 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/05 10:44:34 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/06 09:24:27 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,6 @@ int		ft_usleep(t_philo *philo, long time);
 /** utils.c */
 int		error(char *str);
 int		ft_atoi(char *str);
-void	ft_putstr_fd(char *str, int fd);
+//void	ft_putstr_fd(char *str, int fd);
 
 #endif
