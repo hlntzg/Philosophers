@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:28:43 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/01 09:58:21 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/06 09:06:14 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ static size_t	ft_strlen(char *str)
 	return (len);
 }
 
-void	ft_putstr_fd(char *str, int fd)
+static int	ft_putstr_fd(char *str, int fd)
 {
 	if (!str)
-		return ((void) NULL);
-	write(fd, str, ft_strlen(str));
+		str = "(null)";
+	if (write(fd, str, ft_strlen(str)) == -1)
+		return (-1);
+	return (0);
 }
 
 static int	overflow_return(int sign)
