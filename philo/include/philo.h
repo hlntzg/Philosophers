@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 14:03:13 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/06 09:24:27 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/07 08:54:34 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct timeval	t_time;
 typedef pthread_mutex_t	t_mutex;
 
 /**
- * @n_philo: number of philos and forks (must be > 1).
+ * @n_philo: number of philos and forks (must be > 0).
  * @time_to_die: @time_to_eat: @time_to_sleep: time in ms used for simulation.
  * @n_meals: (optional) mininum meals for each philo to stop the simulation.
  * @start: the starting time of the simulation in ms.
@@ -46,6 +46,10 @@ typedef struct s_args
 	t_time	start;
 }	t_args;
 
+/**
+ * status of philo's action on their routine.
+ * each philo will have their own status updated.
+ */
 typedef enum s_status
 {
 	EATING,
@@ -53,6 +57,12 @@ typedef enum s_status
 	THINKING,
 }	t_status;
 
+/**
+ * state of the thread regarding the simulation:
+ * @OK: thread is ready to be initialized.
+ * @FULL: the specific philo is full and this thread can be stopped.
+ * @OVER: all threads are full or some philo died, simulation must stop.
+ */
 typedef enum s_state
 {
 	OK,
@@ -127,9 +137,6 @@ void	destroy_mutexes(t_mutex **mutex_array, int i, t_mutex **single_mutex);
 int		dining_philosophers(t_data *data);
 void	monitoring(t_data *data);
 int		terminate_threads(t_data *data, int nb);
-//int		philos_full(t_data *data);
-//int		philos_dead(t_data *data);
-//int		check_dead(t_philo *philo);
 
 /** routine.c
  * philo's alternatively perform the actions: to_eat, to_sleep, to_think
@@ -155,6 +162,5 @@ int		ft_usleep(t_philo *philo, long time);
 /** utils.c */
 int		error(char *str);
 int		ft_atoi(char *str);
-//void	ft_putstr_fd(char *str, int fd);
 
 #endif
