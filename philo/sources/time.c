@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:48:40 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/08 10:55:19 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/08 14:02:44 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ int	ft_usleep(t_philo *philo, long time)
 		return (-1);
 	while (elapsed_time(s_start) <= time)
 	{
+		usleep(100);
 		if (get_state(philo) == OVER)
 		{
 			if (get_status(philo) == EATING)
 				let_the_forks(philo);
 			return (-1);
 		}
-		usleep(100);	
 	}
 	return (0);
 }
