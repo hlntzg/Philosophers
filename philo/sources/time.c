@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:48:40 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/06 10:32:41 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/08 10:55:19 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ long	elapsed_time(t_time start)
 int	ft_usleep(t_philo *philo, long time)
 {
 	t_time	s_start;
-	long	current;
 
 	if (gettimeofday(&s_start, NULL) == -1)
 		return (-1);
-	while (1)
+	while (elapsed_time(s_start) <= time)
 	{
 		if (get_state(philo) == OVER)
 		{
@@ -39,12 +38,7 @@ int	ft_usleep(t_philo *philo, long time)
 				let_the_forks(philo);
 			return (-1);
 		}
-		current = elapsed_time(s_start);
-		if (current == -1)
-			return (-1);
-		if (current >= time)
-			break ;
-		usleep(100);
+		usleep(100);	
 	}
 	return (0);
 }
