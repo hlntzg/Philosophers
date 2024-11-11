@@ -30,7 +30,7 @@ int	ft_usleep(t_philo *philo, long time)
 
 	if (gettimeofday(&s_start, NULL) == -1)
 		return (-1);
-	while (elapsed_time(s_start) <= time)
+	while (elapsed_time(s_start) < time)
 	{
 		usleep(100);
 		if (get_state(philo) == OVER)
