@@ -46,7 +46,7 @@ static int	init_mutex_array(t_data *data, t_mutex **mutex)
 		}
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 static int	init_print_mutex(t_data *data)
@@ -60,23 +60,23 @@ static int	init_print_mutex(t_data *data)
 		data->mtx->print = NULL;
 		return (error("pthread_mutex_init() failed for print_mutex\n"));
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 int	init_mutexes(t_data *data)
 {
 	if (init_print_mutex(data) != 0)
-		return (EXIT_FAILURE);
+		return (1);
 	if (init_mutex_array(data, &(data->mtx->forks)) != 0)
 	{
 		destroy_mutexes(NULL, 0, &(data->mtx->print));
-		return (EXIT_FAILURE);
+		return (1);
 	}
 	if (init_mutex_array(data, &(data->mtx->philos)) != 0)
 	{
 		destroy_mutexes(&(data->mtx->forks), data->arg.n_philo,
 			&(data->mtx->print));
-		return (EXIT_FAILURE);
+		return (1);
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }

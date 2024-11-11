@@ -51,7 +51,7 @@ static int	init_args(t_data *data, char **argv)
 	}
 	if (gettimeofday(&data->arg.start, NULL) == -1)
 		return (error("Failed to get starting time\n"));
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -66,11 +66,11 @@ int	main(int argc, char **argv)
 	if (init_args(data, argv))
 	{
 		free(data);
-		return (EXIT_FAILURE);
+		return (1);
 	}
 	if (init_data(&data))
-		return (clean_up_and_exit(data, EXIT_FAILURE));
+		return (clean_up_and_exit(data, 1));
 	if (dining_philosophers(data))
-		return (clean_up_and_exit(data, EXIT_FAILURE));
-	return (clean_up_and_exit(data, EXIT_SUCCESS));
+		return (clean_up_and_exit(data, 1));
+	return (clean_up_and_exit(data, 0));
 }

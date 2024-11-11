@@ -55,7 +55,7 @@ int	dining_philosophers(t_data *data)
 	}
 	monitoring(data);
 	free(th);
-	return (EXIT_SUCCESS);
+	return (0);
 }
 
 int	terminate_threads(t_data *data, int nb)
@@ -75,5 +75,5 @@ int	terminate_threads(t_data *data, int nb)
 			return (error("pthread_join() failed\n"));
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	return (0);
 }

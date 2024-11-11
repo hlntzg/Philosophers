@@ -72,5 +72,5 @@ int	ft_atoi(char *str)
 int	error(char *str)
 {
 	ft_putstr_fd(str, 2);
-	return (EXIT_FAILURE);
+	return (1);
 }

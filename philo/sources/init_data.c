@@ -51,10 +51,10 @@ int	init_data(t_data **data)
 	(*data)->mtx->forks = NULL;
 	(*data)->mtx->print = NULL;
 	if (init_mutexes(*data))
-		return (EXIT_FAILURE);
+		return (1);
 	(*data)->philo = (t_philo *)malloc(sizeof(t_philo) * (*data)->arg.n_philo);
 	if (!(*data)->philo)
 		return (error("Memory allocation failed for philo structure\n"));
 	init_philo(data);
-	return (EXIT_SUCCESS);
+	return (0);
 }
