@@ -25,7 +25,7 @@ static int	check_dead(t_philo *philo)
 		return (-1);
 	if (starving_time >= philo->arg.time_to_die)
 	{
-		get_message(philo, "died");
+		//get_message(philo, "died");
 		return (1);
 	}
 	return (0);
@@ -41,6 +41,7 @@ static int	philos_dead(t_data *data)
 		if (check_dead(&(data->philo[i])))
 		{
 			terminate_threads(data, data->arg.n_philo);
+			get_message(data->philo, "died");
 			return (1);
 		}
 		i++;
