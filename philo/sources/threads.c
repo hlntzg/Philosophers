@@ -17,7 +17,7 @@ static void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	if (philo->id % 2 != 0)
+	if (philo->id % 2 != 0 && philo->arg.n_philo != 1)
 	{
 		to_think(philo);
 		ft_usleep(philo, philo->arg.time_to_eat / 2);
