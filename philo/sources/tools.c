@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 08:23:47 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/08 14:10:00 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/12 15:27:05 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	get_state(t_philo *philo)
 void	get_message(t_philo *philo, char *str)
 {
 	long	timestamp;
-
+	
 	pthread_mutex_lock(philo->print);
 	timestamp = elapsed_time(philo->arg.start);
 	if (timestamp == -1)
@@ -68,7 +68,7 @@ void	get_message(t_philo *philo, char *str)
 	}
 	if (str)
 		printf("%ld %d %s\n", timestamp, philo->id, str);
-	else
+	else 
 	{
 		if (philo->status == THINKING)
 			str = "is thinking";
