@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:31:33 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/08 14:39:03 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/12 12:49:48 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_dead(t_philo *philo)
 	starving_time = elapsed_time(last_meal_time);
 	if (starving_time == -1)
 		return (-1);
-	if (starving_time >= philo->arg.time_to_die)
+	if (starving_time > philo->arg.time_to_die)
 		return (1);
 	return (0);
 }
