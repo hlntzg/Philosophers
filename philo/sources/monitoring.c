@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:31:33 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/12 12:49:48 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/12 13:57:56 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,12 @@ static int	check_dead(t_philo *philo)
 	starving_time = elapsed_time(last_meal_time);
 	if (starving_time == -1)
 		return (-1);
-	if (starving_time > philo->arg.time_to_die)
+	if (starving_time >= philo->arg.time_to_die)
 		return (1);
 	return (0);
 }
 
-static int	philos_dead(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->arg.n_philo)
-	{
-		if (check_dead(&(data->philo[i])))
-		{
-			terminate_threads(data, data->arg.n_philo);
-			get_message(&(data->philo[i]), "died");
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
-
-static int	philos_full(t_data *data)
+static int	philos_over(t_data *data)
 {
 	int	i;
 	int	full;
@@ -57,6 +39,12 @@ static int	philos_full(t_data *data)
 	{
 		if (get_state(&(data->philo[i])) == FULL)
 			full++;
+		if (check_dead(&(data->philo[i])))
+		{
+			terminate_threads(data, data->arg.n_philo);
+			get_message(&(data->philo[i]), "died");
+			return (1);
+		}
 		i++;
 	}
 	if (full == data->arg.n_philo)
@@ -71,9 +59,7 @@ void	monitoring(t_data *data)
 {
 	while (1)
 	{
-		if (philos_dead(data))
-			break ;
-		if (philos_full(data))
+		if (philos_over(data))
 			break ;
 	}
 }
