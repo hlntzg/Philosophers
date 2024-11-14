@@ -6,55 +6,15 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 08:23:47 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/12 15:38:52 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/14 09:13:14 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-int	set_status(t_philo *philo, t_status status)
-{
-	pthread_mutex_lock(philo->philo_mtx);
-	philo->status = status;
-	if (status == EATING)
-	{
-		if (gettimeofday(&(philo->last_meal), NULL) == -1)
-		{
-			pthread_mutex_unlock(philo->philo_mtx);
-			return (-1);
-		}
-	}
-	pthread_mutex_unlock(philo->philo_mtx);
-	return (0);
-}
-
-int	get_status(t_philo *philo)
-{
-	int	status;
-
-	pthread_mutex_lock(philo->philo_mtx);
-	status = philo->status;
-	pthread_mutex_unlock(philo->philo_mtx);
-	return (status);
-}
-
-void	set_state(t_philo *philo, t_state state)
-{
-	pthread_mutex_lock(philo->philo_mtx);
-	philo->state = state;
-	pthread_mutex_unlock(philo->philo_mtx);
-}
-
-int	get_state(t_philo *philo)
-{
-	int	state;
-
-	pthread_mutex_lock(philo->philo_mtx);
-	state = philo->state;
-	pthread_mutex_unlock(philo->philo_mtx);
-	return (state);
-}
-
+/**
+ *
+ */
 void	get_message(t_philo *philo, char *str)
 {
 	long	timestamp;
@@ -79,4 +39,50 @@ void	get_message(t_philo *philo, char *str)
 		printf("%ld %d %s\n", timestamp, philo->id, str);
 	}
 	pthread_mutex_unlock(philo->print);
+}
+
+/**
+ *
+ */
+int	set_status(t_philo *philo, t_status status)
+{
+	pthread_mutex_lock(philo->philo_mtx);
+	philo->status = status;
+	if (status == EATING)
+	{
+		if (gettimeofday(&(philo->last_meal), NULL) == -1)
+		{
+			pthread_mutex_unlock(philo->philo_mtx);
+			return (-1);
+		}
+	}
+	pthread_mutex_unlock(philo->philo_mtx);
+	return (0);
+}
+
+void	set_state(t_philo *philo, t_state state)
+{
+	pthread_mutex_lock(philo->philo_mtx);
+	philo->state = state;
+	pthread_mutex_unlock(philo->philo_mtx);
+}
+
+int	get_status(t_philo *philo)
+{
+	int	status;
+
+	pthread_mutex_lock(philo->philo_mtx);
+	status = philo->status;
+	pthread_mutex_unlock(philo->philo_mtx);
+	return (status);
+}
+
+int	get_state(t_philo *philo)
+{
+	int	state;
+
+	pthread_mutex_lock(philo->philo_mtx);
+	state = philo->state;
+	pthread_mutex_unlock(philo->philo_mtx);
+	return (state);
 }

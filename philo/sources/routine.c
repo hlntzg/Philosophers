@@ -6,18 +6,24 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 13:06:35 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/12 15:57:23 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/14 09:09:48 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/**
+ *
+ */
 void	to_think(t_philo *philo)
 {
 	set_status(philo, THINKING);
 	get_message(philo, NULL);
 }
 
+/**
+ *
+ */
 int	to_sleep(t_philo *philo)
 {
 	set_status(philo, SLEEPING);
@@ -27,6 +33,9 @@ int	to_sleep(t_philo *philo)
 	return (0);
 }
 
+/**
+ *
+ */
 int	to_eat(t_philo *philo)
 {
 	if (get_the_forks(philo) != 0)
@@ -44,6 +53,9 @@ int	to_eat(t_philo *philo)
 	return (0);
 }
 
+/**
+ *
+ */
 int	get_the_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->f_right);

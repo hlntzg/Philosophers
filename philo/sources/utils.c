@@ -12,9 +12,9 @@
 
 #include "philo.h"
 
-static size_t	ft_strlen(char *str)
+static long	ft_strlen(char *str)
 {
-	size_t	len;
+	long	len;
 
 	len = 0;
 	while (str[len] != '\0')

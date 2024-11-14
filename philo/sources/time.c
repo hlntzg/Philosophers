@@ -6,24 +6,28 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:48:40 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/08 14:02:44 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/14 09:11:20 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/**
+ *
+ */
 long	elapsed_time(t_time start)
 {
 	t_time	end;
-	long	elapsed_ms;
 
 	if (gettimeofday(&end, NULL) == -1)
 		return (-1);
-	elapsed_ms = (end.tv_sec - start.tv_sec) * 1000
-		+ (end.tv_usec - start.tv_usec) / 1000;
-	return (elapsed_ms);
+	return ((end.tv_sec * 1000 + end.tv_usec / 1000)
+		- (start.tv_sec * 1000 + start.tv_usec / 1000));
 }
 
+/**
+ *
+ */
 int	ft_usleep(t_philo *philo, long time)
 {
 	t_time	s_start;

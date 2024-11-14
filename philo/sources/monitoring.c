@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:31:33 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/12 16:46:26 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/14 09:08:35 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	monitoring(t_data *data)
 {
 	while (1)
 	{
-		usleep(100);
 		if (philos_over(data))
 			break ;
 	}
