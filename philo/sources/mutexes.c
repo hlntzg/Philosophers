@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 09:22:18 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/14 09:52:46 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/14 16:59:54 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int	init_mutex_array(t_data *data, t_mutex **mutex);
 /**
  * init_mutexes - Initializes all mutexes used in the program.
  * 
- * This function initializes the three mutexes types (print, forks and philos).
- * If any initialization fails, it cleans up previously initialized mutexes
- * before returning an error.
+ * This function initializes the mutexes for printing (single mutex) and the
+ * forks and philos, which are array of mutexes. If any initialization fails,
+ * it cleans up previously initialized mutexes before returning an error.
  * 
  * Return: On success, init_mutexes returns 0; on error, it returns 1.
  */
