@@ -6,14 +6,22 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 08:23:47 by hutzig            #+#    #+#             */
-/*   Updated: 2024/11/14 09:13:14 by hutzig           ###   ########.fr       */
+/*   Updated: 2024/11/15 09:40:09 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
 /**
+ * get_message - Prints a message for a philosopher's action.
+ * @philo: Pointer to the philosopher structure array.
+ * @str: Custom message string or NULL for default status messages.
  *
+ * This function handles printing messages by using a mutex to unsure the
+ * thread-safe printing. It calculates the timestamp since the start of the
+ * simulation to print it with default status messages (thinking, sleeping,
+ * eating) if no custom message. Ensures proper mutex unlocking after printing
+ * or in case of errors.
  */
 void	get_message(t_philo *philo, char *str)
 {
@@ -42,7 +50,15 @@ void	get_message(t_philo *philo, char *str)
 }
 
 /**
+ * set_status - Updates the status of a philosopher.
+ * @philo: Pointer to the philosopher structure array.
+ * @status: New status to be set.
  *
+ * This function changes the status of one philosopher using mutex to ensure
+ * thread-safe status update. If status is EATING, it also updates the timestamp
+ * of last_meal. 
+ *
+ * Return: On success, set_status() returns 0; if an error occurs, it returns -1.
  */
 int	set_status(t_philo *philo, t_status status)
 {

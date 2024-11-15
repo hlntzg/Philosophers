@@ -39,7 +39,7 @@ int	to_sleep(t_philo *philo)
 {
 	set_status(philo, SLEEPING);
 	get_message(philo, NULL);
-	if (ft_usleep(philo, philo->arg.time_to_sleep) != 0)
+	if (ft_sleep(philo, philo->arg.time_to_sleep) != 0)
 		return (-1);
 	return (0);
 }
@@ -62,7 +62,7 @@ int	to_eat(t_philo *philo)
 		return (-1);
 	set_status(philo, EATING);
 	get_message(philo, NULL);
-	if (ft_usleep(philo, philo->arg.time_to_eat) != 0)
+	if (ft_sleep(philo, philo->arg.time_to_eat) != 0)
 		return (-1);
 	let_the_forks(philo);
 	pthread_mutex_lock(philo->philo_mtx);

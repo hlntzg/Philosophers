@@ -157,7 +157,7 @@ void	get_message(t_philo *philo, char *str);
 void	set_state(t_philo *philo, t_state state);
 int		get_state(t_philo *philo);
 long	elapsed_time(t_time start);
-int		ft_usleep(t_philo *philo, long time);
+int		ft_sleep(t_philo *philo, long time);
 
 /** utils.c */
 int		error(char *str);
