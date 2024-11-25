@@ -2,7 +2,7 @@
 
 ## Project overview
 
-**Philosophers** is a project about solving the classic [Dining Philosophers](https://en.wikipedia.org/wiki/Dining_philosophers_problem) problem in C. Originally formulated in 1965 by Edsger Dijkstra, the problem illustrate synchronization issues and requires the used of concurrent algorithm. Here is an overview of the problem:
+The project is a part of the [Hive Helsinki](https://www.hive.fi/en/curriculum) core curriculum. **Philosophers** is a project about solving the classic [Dining Philosophers](https://en.wikipedia.org/wiki/Dining_philosophers_problem) problem in C. Originally formulated in 1965 by Edsger Dijkstra, the problem illustrate synchronization issues and requires the used of concurrent algorithm. Here is an overview of the problem:
 
 - **Scenario**
     - There is X amount of philosophers seated at a round table.
