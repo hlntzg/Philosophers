@@ -2,7 +2,7 @@
 
 ## Project overview
 
-The project is a part of the [Hive Helsinki](https://www.hive.fi/en/curriculum) core curriculum. **Philosophers** is a project about solving the classic [Dining Philosophers](https://en.wikipedia.org/wiki/Dining_philosophers_problem) problem in C. Originally formulated in 1965 by Edsger Dijkstra, the problem illustrate synchronization issues and requires the used of concurrent algorithm. Here is an overview of the problem:
+The project is a part of the [Hive Helsinki](https://www.hive.fi/en/curriculum) core curriculum. **Philosophers** is a project about solving the classic [Dining Philosophers](https://en.wikipedia.org/wiki/Dining_philosophers_problem) problem in C. Originally formulated in 1965 by Edsger Dijkstra, the problem illustrates synchronization issues and requires the used of concurrent algorithm. Here is an overview of the problem:
 
 - **Scenario**
     - There is X amount of philosophers seated at a round table.
@@ -23,6 +23,9 @@ The project is a part of the [Hive Helsinki](https://www.hive.fi/en/curriculum) 
 > This is actually a problem of operating system which deals with resource allocation: philosophers represent processes and the forks represent resources that has to be shared between processes in a synchronized manner without violating any rules.
 
 **Table of contents**
+
+#Installation (#Installation)
+#Operating instructions (#Operating instructions)
 
 
 ## Installation
