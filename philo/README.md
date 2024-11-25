@@ -117,5 +117,5 @@ This project is licensed under either the MIT License or License Personal (your 
 ### Copyright and contact information
 
 - Copyright (c) 2024 Helena Utzig.
-- If you have any problems, questions, ideas or suggestions, please reach me out by helenautzig@gmail.com. For more contact options, see: https://github.com/hlntzg.
+- If you have any problems, questions, ideas or suggestions, please reach me out by helenautzig@gmail.com.
 - Contact into the 42Network: https://profile.intra.42.fr/users/hutzig.
