@@ -22,11 +22,6 @@ The project is a part of the [Hive Helsinki](https://www.hive.fi/en/curriculum) 
 
 > This is actually a problem of operating system which deals with resource allocation: philosophers represent processes and the forks represent resources that has to be shared between processes in a synchronized manner without violating any rules.
 
-**Table of contents**
-
-#Installation (#Installation)
-#Operating instructions (#Operating instructions)
-
 
 ## Installation
 
