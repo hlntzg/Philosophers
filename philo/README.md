@@ -72,11 +72,14 @@ Run `./philo` with the following arguments:
 This program accepts only positive integer values as arguments, with or without plus sign. In case of wrong number of arguments of format, the program return an error message specifying the issue. Any change of a philosopher’s status should display the following:
 
 > timestamp_in_ms X has taken a fork
+>
 > timestamp_in_ms X is eating
+>
 > timestamp_in_ms X is sleeping
+>
 > timestamp_in_ms X is thinking
+>
 > timestamp_in_ms X died
-> 
 
 The simulation will stop when one philosopher died or the all the `number_of_philosophers` have eaten at least `number_of_meals` times. Otherwise, it will keep running until you interrupt this process. Use `Ctrl + C` to send an interrupt signal to the process.
 
