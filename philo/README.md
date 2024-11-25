@@ -113,7 +113,6 @@ This project is licensed under either the MIT License or License Personal (your 
 
 - Under the MIT License: see the [LICENSE-MIT](LICENSE-MIT) file for details.
 - Under the Personal License: see the [LICENSE-PERSONAL](LICENSE-PERSONAL) file for details.
-![MIT License](https://img.shields.io/badge/License-MIT-green.svg)
 
 ### Copyright and contact information
 
