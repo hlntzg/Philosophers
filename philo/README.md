@@ -19,7 +19,7 @@
     - **Concurrency**: Since philosophers do not communicate with each other and do not know if another is starving, managing access to forks is critical to avoid deadlock (where no philosopher can eat because they are all waiting for forks).
     - **Synchronization mechanism**: mutexes are used to manage fork access.
 
-> This is actually a problem of operating system which deals with resource allocation: philosophers represent `processes` and the forks represent `resources` that has to be shared between processes in a synchronized manner without violating any rules.
+> This is actually a problem of operating system which deals with resource allocation: philosophers represent processes and the forks represent resources that has to be shared between processes in a synchronized manner without violating any rules.
 
 **Table of contents**
 
