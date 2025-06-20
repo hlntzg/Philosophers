@@ -109,10 +109,8 @@ Feel free to use, modify, and share this code. Please provide appropriate attrib
 
 ### License
 
-This project is licensed under either the MIT License or License Personal (your choice). 
-
-- Under the MIT License: see the [LICENSE-MIT](LICENSE-MIT) file for details.
-- Under the Personal License: see the [LICENSE-PERSONAL](LICENSE-PERSONAL) file for details.
+This project is licensed under a custom Educational Use License. It is intended 
+for personal and academic use within Hive Helsinki and the 42 Network. See [LICENSE](./LICENSE) for full terms.
 
 ### Copyright and contact information
 
